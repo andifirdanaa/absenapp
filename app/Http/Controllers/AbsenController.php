@@ -12,6 +12,7 @@ class AbsenController extends Controller
     public function show(Request $request) {
         if (request()->ajax()) {
             $data = Absen::query();
+            $data->orderBy('status_hadir','asc');
             return DataTables::of($data)
                 ->addColumn('action', function($data) {
                     if($data->status_hadir == 0){
